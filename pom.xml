@@ -53,6 +53,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.3.1</version>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -65,7 +77,41 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<includes>
+						<includes> **/*IT</includes>
+						<include>**/Test*.java</include>
+						<include>**/*Test.java</include>
+						<include>**/*Tests.java</include>
+						<include>**/*TestCase.java</include>
+					</includes>
+					<additionalClasspathElements>
+						<additionalClasspathElement>${basedir}/target/classes</additionalClasspathElement>
+					</additionalClasspathElements>
+					<parallel>none</parallel>
+					<executions>
+						<execution>
+							<goals>
+								<goal>integration-tes</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</configuration>
+			</plugin>
+        </plugins>
 	</build>
 
 	<repositories>

@@ -1,8 +1,7 @@
 package guru.springframework.domain;
 
-import org.hibernate.annotations.Generated;
-
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,12 +9,14 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Lob
     private String description;
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
     private String source;
     private String url;
+    @Lob
     private String directions;
     @Lob
     private Byte[] images;
@@ -32,7 +33,7 @@ public class Recipe {
 
     @ManyToMany
     @JoinTable(name = "recipe_category",
-   joinColumns = @JoinColumn(name = "recipe_id"),
+            joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories;
@@ -44,16 +45,23 @@ public class Recipe {
 
     public Recipe addIngredient(Ingredient ingredient) {
         ingredient.setRecipe(this);
+        if (null == this.ingredients) {
+            this.ingredients = new HashSet<>();
+        }
         this.ingredients.add(ingredient);
         return this;
     }
 
 
     public Set<Category> getCategories() {
+        if (this.categories == null) {
+            return new HashSet<>();
+        }
         return categories;
     }
 
     public void setCategories(Set<Category> categories) {
+
         this.categories = categories;
     }
 
