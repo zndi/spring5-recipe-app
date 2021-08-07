@@ -5,8 +5,6 @@ import guru.springframework.repository.RecipeRepository;
 import guru.springframework.service.impl.RecipeServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
@@ -28,8 +26,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@ExtendWith(SpringExtension.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("TEST")
 @ContextConfiguration(classes = {ConfigTests.class, RecipeServiceImpl.class, IndexController.class})
 @WebAppConfiguration
