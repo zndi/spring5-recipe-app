@@ -26,26 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@ActiveProfiles("TEST")
-@ContextConfiguration(classes = {ConfigTests.class, RecipeServiceImpl.class, IndexController.class})
-@WebAppConfiguration
-@ComponentScan(basePackages = "guru.springframework")
-public class IndexControllerTestsIT extends AbstractJUnit4SpringContextTests {
-
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-
-    private MockMvc mockMvc;
-
-    @Autowired
-    private RecipeRepository recipeRepository;
-
-    @Before
-    public void setUp() {
-        mockMvc= MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-
-        reset(recipeRepository);
-    }
+public class IndexControllerTestsIT extends AbstractControllerTest {
 
     @Test
     public void getIndexPage() throws Exception {
@@ -55,6 +36,7 @@ public class IndexControllerTestsIT extends AbstractJUnit4SpringContextTests {
         }});
         when(recipeRepository.findAll()).thenReturn(Collections.singletonList(recipes).iterator().next());
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
     }
 }

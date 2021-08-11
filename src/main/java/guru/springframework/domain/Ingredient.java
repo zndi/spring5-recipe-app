@@ -24,6 +24,7 @@ public class Ingredient {
         this.recipe = recipe;
         this.uom = uom;
     }
+    public Ingredient(){}
 
     public UnitOfMeasure getUom() {
         return uom;
