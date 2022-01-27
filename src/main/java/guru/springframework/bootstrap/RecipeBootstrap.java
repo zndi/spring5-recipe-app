@@ -1,6 +1,6 @@
 package guru.springframework.bootstrap;
 
-import guru.springframework.domain.*;
+import guru.springframework.entity.*;
 
 import guru.springframework.repository.CategoryRepository;
 import guru.springframework.repository.RecipeRepository;

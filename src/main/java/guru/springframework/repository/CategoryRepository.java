@@ -1,6 +1,6 @@
 package guru.springframework.repository;
 
-import guru.springframework.domain.Category;
+import guru.springframework.entity.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

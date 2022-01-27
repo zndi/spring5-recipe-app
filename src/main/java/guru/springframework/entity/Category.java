@@ -1,4 +1,4 @@
-package guru.springframework.domain;
+package guru.springframework.entity;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,6 +1,6 @@
 package guru.springframework.controller;
 
-import guru.springframework.domain.Recipe;
+import guru.springframework.entity.Recipe;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-public class RecipeControllerTest  extends AbstractControllerTest{
+public class RecipeControllerTest extends AbstractControllerTest {
 
     @Test
     public void getRecipe() throws Exception {

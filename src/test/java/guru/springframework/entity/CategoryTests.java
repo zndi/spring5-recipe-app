@@ -1,4 +1,4 @@
-package guru.springframework.domain;
+package guru.springframework.entity;
 
 import junit.framework.TestCase;
 import org.junit.Before;

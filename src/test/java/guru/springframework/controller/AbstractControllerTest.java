@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,9 +22,8 @@ import static org.mockito.Mockito.reset;
 @ActiveProfiles("TEST")
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ConfigTests.class, RecipeServiceImpl.class, RecipeController.class, IndexController.class})
-@WebAppConfiguration
-@ComponentScan(basePackages = "guru.springframework")
-public class AbstractControllerTest  extends AbstractJUnit4SpringContextTests {
+@SpringBootTest
+public class AbstractControllerTest {
 
 
     @Autowired
