@@ -28,4 +28,9 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe getRecipe(Long id) {
         return this.recipeRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Recipe saveRecipe(Recipe recipe) {
+        return this.recipeRepository.save(recipe);
+    }
 }

@@ -2,12 +2,11 @@ package guru.springframework.controller;
 
 import guru.springframework.map.CycleAvoidingMappingContext;
 import guru.springframework.map.RecipeMapper;
+import guru.springframework.model.Recipe;
 import guru.springframework.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import static guru.springframework.map.RecipeMapper.INSTANCE;
 
@@ -25,5 +24,29 @@ public class RecipeController {
     public String getRecipe(@PathVariable("id") Long id, Model model) {
         model.addAttribute("recipe", INSTANCE.toModel(this.recipeService.getRecipe(id), new CycleAvoidingMappingContext()));
         return "recipe/show";
+    }
+
+    @RequestMapping({"/new"})
+    public String newRecipe(@ModelAttribute Recipe recipe, Model model){
+        model.addAttribute("recipe", recipe);
+
+        return "recipe/recipeform";
+    }
+
+    @RequestMapping({"/{id}/update"})
+    public String edit(@PathVariable("id") Long id, Model model){
+        model.addAttribute("recipe", INSTANCE.toModel(this.recipeService.getRecipe(id), new CycleAvoidingMappingContext()));
+
+        return "recipe/recipeform";
+    }
+
+    @PostMapping("")
+    public String saveOrUpdate(@ModelAttribute Recipe recipe){
+        Recipe savedCommand = INSTANCE
+                .toModel(recipeService
+                        .saveRecipe(INSTANCE.toEntity(recipe, new CycleAvoidingMappingContext())),
+                        new CycleAvoidingMappingContext());
+
+        return "redirect:/recipe/show/" + savedCommand.getId();
     }
 }
